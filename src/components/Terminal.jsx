@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Terminal as TerminalIcon, Sparkles, CornerDownLeft } from 'lucide-react';
 import { personalInfo, skillsData, projectsData } from '../data/portfolioData';
 
-export default function Terminal() {
+export default function Terminal({ onTriggerAntiGravity }) {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState([
     {
@@ -69,6 +69,8 @@ export default function Terminal() {
                 <span className="text-slate-300">Lists featured production systems and links</span>
                 <span className="text-accentCyan font-bold">contact</span>
                 <span className="text-slate-300">Displays direct email, phone & social profiles</span>
+                <span className="text-accentCyan font-bold">gravity</span>
+                <span className="text-slate-300">Launches the Matter.js Anti-Gravity simulation</span>
                 <span className="text-accentCyan font-bold">clear</span>
                 <span className="text-slate-300">Flushes all terminal output history</span>
               </div>
@@ -202,6 +204,23 @@ export default function Terminal() {
                     {personalInfo.linkedin}
                   </a>
                 </div>
+              </div>
+            </div>
+          ),
+        });
+        break;
+
+      case 'gravity':
+      case 'antigravity':
+        onTriggerAntiGravity?.();
+        newEntries.push({
+          id: `out-${entryId}`,
+          type: 'output',
+          content: (
+            <div className="space-y-1 text-cyan-400 font-bold">
+              <div>🚀 ZERO_GRAVITY_MODE initiated!</div>
+              <div className="text-xs text-slate-300 font-normal">
+                Buoyancy physics active. Drag and toss floating elements. Click "Restore Normal Physics" or press ESC to exit.
               </div>
             </div>
           ),
